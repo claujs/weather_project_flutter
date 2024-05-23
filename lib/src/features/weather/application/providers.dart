@@ -10,14 +10,14 @@ final weatherProvider = FutureProvider.autoDispose<WeatherData>((ref) async {
   final city = ref.watch(cityProvider);
   final weatherResponse =
       await ref.watch(weatherRepositoryProvider).getWeather(city: city);
-  return WeatherData.from(weatherResponse);
+  return WeatherData.from(weatherResponse!);
 });
 
 final forecastProvider = FutureProvider.autoDispose<ForecastData>((ref) async {
   final city = ref.watch(cityProvider);
   final forecastResponse =
       await ref.watch(weatherRepositoryProvider).getForecast(city: city);
-  return ForecastData.from(forecastResponse);
+  return ForecastData.from(forecastResponse!);
 });
 
 final favoriteCitiesProvider = StateProvider<List<String>>((ref) => []);

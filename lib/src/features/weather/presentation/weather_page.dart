@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weather_app_mobile/src/features/weather/application/providers.dart';
 import 'package:weather_app_mobile/src/features/weather/presentation/city_search_box.dart';
 import 'package:weather_app_mobile/src/features/weather/presentation/current_weather.dart';
@@ -25,7 +24,6 @@ class _WeatherPageState extends ConsumerState<WeatherPage> {
     super.dispose();
   }
 
-  @override
   @override
   void initState() {
     super.initState();
