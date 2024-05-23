@@ -5,7 +5,7 @@ import 'package:weather_app_mobile/src/features/weather/application/providers.da
 import 'package:weather_app_mobile/src/features/weather/presentation/city_search_box.dart';
 import 'package:weather_app_mobile/src/features/weather/presentation/current_weather.dart';
 
-import '../../../constants/app_colors.dart';
+import '../../constants/app_colors.dart';
 
 class WeatherPage extends ConsumerStatefulWidget {
   const WeatherPage({super.key, required this.city});
