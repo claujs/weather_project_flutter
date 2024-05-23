@@ -1,0 +1,15 @@
+com.codewithandrea.open_weather_example_flutter.app-jetified-annotation-experimental-1.1.0-0 /Users/claujs/.gradle/caches/transforms-3/0bb69044371f2fee205d1ea78e60d545/transformed/jetified-annotation-experimental-1.1.0/res
+com.codewithandrea.open_weather_example_flutter.app-core-1.6.0-1 /Users/claujs/.gradle/caches/transforms-3/4be0956e46d859cf7b928a3318a568be/transformed/core-1.6.0/res
+com.codewithandrea.open_weather_example_flutter.app-jetified-window-java-1.0.0-beta04-2 /Users/claujs/.gradle/caches/transforms-3/d432e119701276fea2cdd48c0952a289/transformed/jetified-window-java-1.0.0-beta04/res
+com.codewithandrea.open_weather_example_flutter.app-jetified-window-1.0.0-beta04-3 /Users/claujs/.gradle/caches/transforms-3/d4d9d725496b463fbbbe08df415a23fd/transformed/jetified-window-1.0.0-beta04/res
+com.codewithandrea.open_weather_example_flutter.app-debug-4 /Users/claujs/Documents/weather_project/weather_project/android/app/src/debug/res
+com.codewithandrea.open_weather_example_flutter.app-main-5 /Users/claujs/Documents/weather_project/weather_project/android/app/src/main/res
+com.codewithandrea.open_weather_example_flutter.app-pngs-6 /Users/claujs/Documents/weather_project/weather_project/build/app/generated/res/pngs/debug
+com.codewithandrea.open_weather_example_flutter.app-resValues-7 /Users/claujs/Documents/weather_project/weather_project/build/app/generated/res/resValues/debug
+com.codewithandrea.open_weather_example_flutter.app-rs-8 /Users/claujs/Documents/weather_project/weather_project/build/app/generated/res/rs/debug
+com.codewithandrea.open_weather_example_flutter.app-mergeDebugResources-9 /Users/claujs/Documents/weather_project/weather_project/build/app/intermediates/incremental/debug/mergeDebugResources/merged.dir
+com.codewithandrea.open_weather_example_flutter.app-mergeDebugResources-10 /Users/claujs/Documents/weather_project/weather_project/build/app/intermediates/incremental/debug/mergeDebugResources/stripped.dir
+com.codewithandrea.open_weather_example_flutter.app-merged_res-11 /Users/claujs/Documents/weather_project/weather_project/build/app/intermediates/merged_res/debug
+com.codewithandrea.open_weather_example_flutter.app-packaged_res-12 /Users/claujs/Documents/weather_project/weather_project/build/path_provider_android/intermediates/packaged_res/debug
+com.codewithandrea.open_weather_example_flutter.app-packaged_res-13 /Users/claujs/Documents/weather_project/weather_project/build/shared_preferences_android/intermediates/packaged_res/debug
+com.codewithandrea.open_weather_example_flutter.app-packaged_res-14 /Users/claujs/Documents/weather_project/weather_project/build/sqflite/intermediates/packaged_res/debug
