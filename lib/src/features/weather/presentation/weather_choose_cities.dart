@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather_app_mobile/src/features/weather/application/manage_cache_provider.dart';
 import 'package:weather_app_mobile/src/features/weather/presentation/weather_page.dart';
 
+import '../../../constants/app_colors.dart';
+
 class AddCityScreen extends ConsumerWidget {
   const AddCityScreen({super.key});
 
@@ -14,13 +16,10 @@ class AddCityScreen extends ConsumerWidget {
     final textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      backgroundColor: Colors.transparent,
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(
-              'assets/images/dawn_sky.jpeg', // Replace with actual asset path
-            ),
+            image: AssetImage('assets/images/dawn_sky.jpeg'),
             fit: BoxFit.cover,
           ),
         ),
@@ -35,8 +34,8 @@ class AddCityScreen extends ConsumerWidget {
             children: [
               Text(
                 'Add City',
-                style: textTheme.titleLarge!.copyWith(color: Colors.white),
                 textAlign: TextAlign.center,
+                style: textTheme.headlineMedium!.copyWith(color: Colors.white),
               ),
               const SizedBox(height: 20),
               TextFormField(
@@ -50,7 +49,7 @@ class AddCityScreen extends ConsumerWidget {
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white),
                   ),
-                  prefixIcon: Icon(Icons.location_city, color: Colors.white),
+                  prefixIcon: Icon(Icons.location_city),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
