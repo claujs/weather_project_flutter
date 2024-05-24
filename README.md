@@ -1,6 +1,6 @@
 # RockWeather: Your Pocket Weather Companion
 
-WeatherNow is a comprehensive Flutter weather application that provides real-time and forecast weather information, along with intuitive features for managing your favorite locations. Built with a focus on user experience and reliability, WeatherNow empowers you to stay informed about the weather wherever you go.
+Rock Weather is a comprehensive Flutter weather application that provides real-time and forecast weather information, along with intuitive features for managing your favorite locations. Built with a focus on user experience and reliability, Rock Weather empowers you to stay informed about the weather wherever you go.
 
 <img src="https://github.com/claujs/weather_project_flutter/blob/main/.github/images/add_city_screen.png?raw=true" alt="Flutter Weather App Preview" width=50% height=50%>
 <img src="https://github.com/claujs/weather_project_flutter/blob/main/.github/images/screen_day.png?raw=true" 
@@ -23,7 +23,7 @@ alt="Flutter Weather App Preview" width=50% height=50%>
 
 **Offline Access:**
 
-* **Data Caching:** WeatherNow caches data in your device's database, ensuring you have access to recent weather information even when you're offline.  
+* **Data Caching:** Rock Weather caches data in your device's database, ensuring you have access to recent weather information even when you're offline.  
 * **Seamless Transition:** The app automatically switches between online and offline modes, providing a seamless user experience regardless of your internet connection.
 
 ## Technologies Used
