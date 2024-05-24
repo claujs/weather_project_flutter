@@ -5,8 +5,6 @@ import 'package:weather_app_mobile/src/features/weather/application/providers.da
 import 'package:weather_app_mobile/src/features/weather/presentation/city_search_box.dart';
 import 'package:weather_app_mobile/src/features/weather/presentation/current_weather.dart';
 
-import '../../../constants/app_colors.dart';
-
 class WeatherPage extends ConsumerStatefulWidget {
   const WeatherPage({super.key, required this.city});
 
@@ -52,21 +50,23 @@ class _WeatherPageState extends ConsumerState<WeatherPage> {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: dayPeriod <= 18
-                ? AppColors.rainGradient
-                : AppColors.nightGradient,
+          image: DecorationImage(
+            image: AssetImage(
+              dayPeriod <= 18
+                  ? 'assets/images/day_background.jpeg' // Replace with actual asset path
+                  : 'assets/images/night_background.jpeg', // Replace with actual asset path
+            ),
+            fit: BoxFit.cover,
           ),
         ),
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: MediaQuery.of(context).size.width * 0.1,
+            horizontal: MediaQuery.of(context).size.width * 0.05,
             vertical: MediaQuery.of(context).size.height * 0.1,
           ),
           child: Column(
@@ -84,9 +84,9 @@ class _WeatherPageState extends ConsumerState<WeatherPage> {
                 ),
               ),
               const SizedBox(height: 50),
-              const Text(
+              Text(
                 'Swipe to see more',
-                style: TextStyle(color: Colors.white, fontSize: 12),
+                style: textTheme.bodyMedium,
               ),
             ],
           ),

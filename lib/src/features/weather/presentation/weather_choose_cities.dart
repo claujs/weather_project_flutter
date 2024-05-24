@@ -3,8 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather_app_mobile/src/features/weather/application/manage_cache_provider.dart';
 import 'package:weather_app_mobile/src/features/weather/presentation/weather_page.dart';
 
-import '../../../constants/app_colors.dart';
-
 class AddCityScreen extends ConsumerWidget {
   const AddCityScreen({super.key});
 
@@ -13,29 +11,34 @@ class AddCityScreen extends ConsumerWidget {
     final formKey = GlobalKey<FormState>();
     final cityController = TextEditingController();
     final favoriteCities = ref.watch(favoriteCitiesProvider);
+    final textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('Add Favorite City',
-            style: TextStyle(color: Colors.black54)),
-        // Use the same background color as the app theme
-        backgroundColor: AppColors.rainBlueLight,
-      ),
+      backgroundColor: Colors.transparent,
       body: Container(
-        // Set the background color for the entire screen
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: AppColors.rainGradient),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+              'assets/images/dawn_sky.jpeg', // Replace with actual asset path
+            ),
+            fit: BoxFit.cover,
+          ),
         ),
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.05,
+          vertical: MediaQuery.of(context).size.height * 0.1,
+        ),
         child: Form(
           key: formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              Text(
+                'Add City',
+                style: textTheme.titleLarge!.copyWith(color: Colors.white),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 20),
               TextFormField(
                 controller: cityController,
                 decoration: const InputDecoration(
@@ -47,13 +50,13 @@ class AddCityScreen extends ConsumerWidget {
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white),
                   ),
-                  prefixIcon: Icon(Icons.location_city),
+                  prefixIcon: Icon(Icons.location_city, color: Colors.white),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a city name';
-                  } else if (value.length < 5) {
-                    return 'City name must be at least 5 characters long';
+                  } else if (value.length < 3) {
+                    return 'City name must be at least 3 characters long';
                   }
                   return null;
                 },
