@@ -3,19 +3,24 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather_app_mobile/src/features/weather/application/manage_cache_provider.dart';
 import 'package:weather_app_mobile/src/features/weather/presentation/weather_page.dart';
 
-import '../../../constants/app_colors.dart';
-
-class AddCityScreen extends ConsumerWidget {
+class AddCityScreen extends ConsumerStatefulWidget {
   const AddCityScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final formKey = GlobalKey<FormState>();
+  ConsumerState<ConsumerStatefulWidget> createState() => _AddCityScreenState();
+}
+
+class _AddCityScreenState extends ConsumerState<AddCityScreen> {
+  final formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
     final cityController = TextEditingController();
     final favoriteCities = ref.watch(favoriteCitiesProvider);
     final textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -49,7 +54,7 @@ class AddCityScreen extends ConsumerWidget {
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white),
                   ),
-                  prefixIcon: Icon(Icons.location_city),
+                  prefixIcon: Icon(Icons.location_city, color: Colors.white),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
