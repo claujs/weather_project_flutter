@@ -34,7 +34,7 @@ WeatherNow is a comprehensive Flutter weather application that provides real-tim
 
 1. **Clone the Repository:**
     ```bash
-    git clone https://github.com/your-username/weather-app-mobile.git
+    https://github.com/claujs/weather_project_flutter.git
     ```
 
 2. **Install Dependencies:**
