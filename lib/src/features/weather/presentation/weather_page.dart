@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -72,6 +75,17 @@ class _WeatherPageState extends ConsumerState<WeatherPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: Platform.isAndroid
+                          ? const Icon(Icons.arrow_back_ios_new)
+                          : const Icon(CupertinoIcons.back)),
+                ],
+              ),
+              const SizedBox(height: 20),
               const CitySearchBox(),
               const SizedBox(height: 50),
               Expanded(

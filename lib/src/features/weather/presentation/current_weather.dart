@@ -38,6 +38,7 @@ class CurrentWeatherContents extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     final temp = data.temp.celsius.toInt().toString();
+
     final minTemp = data.minTemp.celsius.toInt().toString();
     final maxTemp = data.maxTemp.celsius.toInt().toString();
     final highAndLow = 'High: $maxTemp° Low: $minTemp°';
