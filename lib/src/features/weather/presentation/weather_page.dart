@@ -106,7 +106,7 @@ class _WeatherPageState extends ConsumerState<WeatherPage> {
         IconButton(
           onPressed: () => Navigator.pop(context),
           icon: Platform.isAndroid
-              ? const Icon(Icons.arrow_back_ios_new)
+              ? const Icon(Icons.arrow_back)
               : const Icon(CupertinoIcons.back),
         ),
       ],
