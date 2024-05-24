@@ -52,31 +52,34 @@ class _CitySearchRowState extends ConsumerState<CitySearchBox> {
                     ),
                   ),
                 ),
-                onSubmitted: (value) =>
-                    ref.read(cityProvider.notifier).state = value,
+                onSubmitted: (value) {
+                  ref.read(cityProvider.notifier).state = value;
+                },
               ),
             ),
             InkWell(
               child: Container(
                 alignment: Alignment.center,
                 decoration: const BoxDecoration(
-                  color: AppColors.accentColor,
+                  color: AppColors.rainBlueDark,
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(_radius),
                     bottomRight: Radius.circular(_radius),
                   ),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                  child: Text('search',
-                      style: Theme.of(context).textTheme.bodyLarge),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15.0),
+                  child: Text(
+                    'search',
+                    style: TextStyle(fontSize: 16),
+                  ),
                 ),
               ),
               onTap: () {
                 FocusScope.of(context).unfocus();
                 ref.read(cityProvider.notifier).state = _searchController.text;
               },
-            )
+            ),
           ],
         ),
       ),
