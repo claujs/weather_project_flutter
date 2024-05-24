@@ -45,9 +45,10 @@ class _AddCityScreenState extends ConsumerState<AddCityScreen> {
               const SizedBox(height: 20),
               TextFormField(
                 controller: cityController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'City Name',
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle:
+                      textTheme.bodyMedium!.copyWith(color: Colors.white),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white),
                   ),
@@ -64,6 +65,8 @@ class _AddCityScreenState extends ConsumerState<AddCityScreen> {
                   }
                   return null;
                 },
+                textInputAction: TextInputAction.done,
+                style: textTheme.bodyLarge!.copyWith(color: Colors.white),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
@@ -73,10 +76,11 @@ class _AddCityScreenState extends ConsumerState<AddCityScreen> {
                     ref
                         .read(favoriteCitiesProvider.notifier)
                         .addFavoriteCity(city);
-                    cityController.clear(); // Clear the input field
+                    cityController.clear();
+                    FocusScope.of(context).unfocus();
                   }
                 },
-                child: const Text('Add City'),
+                child: Text('Add City', style: textTheme.bodyMedium),
               ),
               const SizedBox(height: 20),
               // Display the added cities (Optional)
@@ -84,12 +88,9 @@ class _AddCityScreenState extends ConsumerState<AddCityScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
+                  Text(
                     'Your Favorite Cities:',
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black54),
+                    style: textTheme.bodyLarge,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -99,7 +100,7 @@ class _AddCityScreenState extends ConsumerState<AddCityScreen> {
                       verticalOffset: 20,
                       enableFeedback: true,
                       showDuration: const Duration(seconds: 3),
-                      child: Icon(Icons.help_outline, color: Colors.white),
+                      child: Icon(Icons.help_outline, color: Colors.black),
                     ),
                   ),
                 ],
@@ -128,7 +129,9 @@ class _AddCityScreenState extends ConsumerState<AddCityScreen> {
                       },
                       child: ListTile(
                         title: Text(favoriteCities[index],
-                            style: const TextStyle(color: Colors.white)),
+                            style: textTheme.bodyLarge!.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold)),
                         onTap: () {
                           // Navigate to WeatherPage with the selected city
                           Navigator.push(
@@ -158,7 +161,7 @@ class _AddCityScreenState extends ConsumerState<AddCityScreen> {
                     ),
                   );
                 },
-                child: const Text('Go to Weather Page'),
+                child: Text('Go to Weather Page', style: textTheme.bodyMedium),
               ),
             ],
           ),
