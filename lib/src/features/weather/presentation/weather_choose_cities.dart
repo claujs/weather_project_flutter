@@ -152,6 +152,15 @@ class _AddCityScreenState extends ConsumerState<AddCityScreen> {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
+                  if (favoriteCities.isEmpty) {
+                    // Show an error message if the list is empty
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Please add a city first!'),
+                      ),
+                    );
+                    return; // Prevent navigation if empty
+                  }
                   Navigator.push(
                     context,
                     MaterialPageRoute(
