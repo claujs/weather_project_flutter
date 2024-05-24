@@ -52,6 +52,8 @@ class AddCityScreen extends ConsumerWidget {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a city name';
+                  } else if (value.length < 5) {
+                    return 'City name must be at least 5 characters long';
                   }
                   return null;
                 },
@@ -71,11 +73,30 @@ class AddCityScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 20),
               // Display the added cities (Optional)
-              const Text('Your Favorite Cities:',
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black54)),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Your Favorite Cities:',
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black54),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Tooltip(
+                      message: 'Swipe left on a city to delete it.',
+                      preferBelow: false,
+                      verticalOffset: 20,
+                      enableFeedback: true,
+                      showDuration: const Duration(seconds: 3),
+                      child: Icon(Icons.help_outline, color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
               const SizedBox(height: 10),
               Expanded(
                 child: ReorderableListView.builder(
