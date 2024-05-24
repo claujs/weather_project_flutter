@@ -1,7 +1,12 @@
-# WeatherNow: Your Pocket Weather Companion
+# RockWeather: Your Pocket Weather Companion
 
 WeatherNow is a comprehensive Flutter weather application that provides real-time and forecast weather information, along with intuitive features for managing your favorite locations. Built with a focus on user experience and reliability, WeatherNow empowers you to stay informed about the weather wherever you go.
 
+<img src="https://github.com/claujs/weather_project_flutter/main/.github/images/add_city_screen.png?raw=true" alt="Flutter Weather App Preview" width=25% height=25%>
+<img src="https://github.com/claujs/weather_project_flutter/main/.github/images/screen_day.png?raw=true" 
+alt="Flutter Weather App Preview" width=25% height=25%>
+<img src="https://github.com/claujs/weather_project_flutter/main/.github/images/screen_night.png?raw=true" 
+alt="Flutter Weather App Preview" width=25% height=25%>
 ## Features
 
 **Essential Weather Data:**

@@ -60,7 +60,7 @@ class _WeatherPageState extends ConsumerState<WeatherPage> {
   }
 
   Widget _buildBackground(BuildContext context) {
-    final imagePath = dayPeriod <= 18
+    final imagePath = dayPeriod >= 18
         ? 'assets/images/day_background.jpeg' // Replace with actual asset path
         : 'assets/images/night_background.jpeg'; // Replace with actual asset path
     return Container(
