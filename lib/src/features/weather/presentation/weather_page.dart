@@ -53,59 +53,63 @@ class _WeatherPageState extends ConsumerState<WeatherPage> {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-              dayPeriod <= 18
-                  ? 'assets/images/day_background.jpeg' // Replace with actual asset path
-                  : 'assets/images/night_background.jpeg', // Replace with actual asset path
-            ),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: MediaQuery.of(context).size.width * 0.05,
-            vertical: MediaQuery.of(context).size.height * 0.1,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  IconButton(
-                      onPressed: () => Navigator.pop(context),
-                      icon: Platform.isAndroid
-                          ? const Icon(Icons.arrow_back_ios_new)
-                          : const Icon(CupertinoIcons.back)),
-                ],
-              ),
-              const SizedBox(height: 20),
-              const CitySearchBox(),
-              const SizedBox(height: 50),
-              Expanded(
-                child: PageView.builder(
-                  controller: _pageController,
-                  itemCount: ref
-                      .watch(favoriteCitiesProvider)
-                      .length, // Use the actual length of cities
-                  itemBuilder: (context, index) => CurrentWeather(),
-                ),
-              ),
-              const SizedBox(height: 50),
-              Text(
-                'Swipe to see more',
-                style: textTheme.bodyMedium,
-              ),
-            ],
-          ),
+      body: _buildBackground(context),
+    );
+  }
+
+  Widget _buildBackground(BuildContext context) {
+    final imagePath = dayPeriod <= 18
+        ? 'assets/images/day_background.jpeg' // Replace with actual asset path
+        : 'assets/images/night_background.jpeg'; // Replace with actual asset path
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(imagePath),
+          fit: BoxFit.cover,
         ),
       ),
+      child: _buildContent(context),
+    );
+  }
+
+  Widget _buildContent(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: MediaQuery.of(context).size.width * 0.05,
+        vertical: MediaQuery.of(context).size.height * 0.1,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          _buildBackButton(context),
+          const SizedBox(height: 20),
+          const CitySearchBox(),
+          const SizedBox(height: 50),
+          Expanded(
+            child: PageView.builder(
+              controller: _pageController,
+              itemCount: ref.watch(favoriteCitiesProvider).length,
+              itemBuilder: (context, index) => CurrentWeather(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBackButton(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: Platform.isAndroid
+              ? const Icon(Icons.arrow_back_ios_new)
+              : const Icon(CupertinoIcons.back),
+        ),
+      ],
     );
   }
 }
