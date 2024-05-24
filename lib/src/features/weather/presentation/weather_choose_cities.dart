@@ -3,58 +3,70 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather_app_mobile/src/features/weather/application/manage_cache_provider.dart';
 import 'package:weather_app_mobile/src/features/weather/presentation/weather_page.dart';
 
-import '../../../constants/app_colors.dart';
-
-class AddCityScreen extends ConsumerWidget {
+class AddCityScreen extends ConsumerStatefulWidget {
   const AddCityScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final formKey = GlobalKey<FormState>();
+  ConsumerState<ConsumerStatefulWidget> createState() => _AddCityScreenState();
+}
+
+class _AddCityScreenState extends ConsumerState<AddCityScreen> {
+  final formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
     final cityController = TextEditingController();
     final favoriteCities = ref.watch(favoriteCitiesProvider);
+    final textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('Add Favorite City',
-            style: TextStyle(color: Colors.black54)),
-        // Use the same background color as the app theme
-        backgroundColor: AppColors.rainBlueLight,
-      ),
+      resizeToAvoidBottomInset: false,
       body: Container(
-        // Set the background color for the entire screen
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: AppColors.rainGradient),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/dawn_sky.jpeg'),
+            fit: BoxFit.cover,
+          ),
         ),
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.05,
+          vertical: MediaQuery.of(context).size.height * 0.1,
+        ),
         child: Form(
           key: formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              Text(
+                'Add City',
+                textAlign: TextAlign.center,
+                style: textTheme.headlineMedium!.copyWith(color: Colors.white),
+              ),
+              const SizedBox(height: 20),
               TextFormField(
                 controller: cityController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'City Name',
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle:
+                      textTheme.bodyMedium!.copyWith(color: Colors.white),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white),
                   ),
-                  prefixIcon: Icon(Icons.location_city),
+                  prefixIcon: Icon(Icons.location_city, color: Colors.white),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a city name';
+                  } else if (value.length < 3) {
+                    return 'City name must be at least 3 characters long';
                   }
                   return null;
                 },
+                textInputAction: TextInputAction.done,
+                style: textTheme.bodyLarge!.copyWith(color: Colors.white),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
@@ -64,18 +76,35 @@ class AddCityScreen extends ConsumerWidget {
                     ref
                         .read(favoriteCitiesProvider.notifier)
                         .addFavoriteCity(city);
-                    cityController.clear(); // Clear the input field
+                    cityController.clear();
+                    FocusScope.of(context).unfocus();
                   }
                 },
-                child: const Text('Add City'),
+                child: Text('Add City', style: textTheme.bodyMedium),
               ),
               const SizedBox(height: 20),
               // Display the added cities (Optional)
-              const Text('Your Favorite Cities:',
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black54)),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Your Favorite Cities:',
+                    style: textTheme.bodyLarge,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Tooltip(
+                      message: 'Swipe left on a city to delete it.',
+                      preferBelow: false,
+                      verticalOffset: 20,
+                      enableFeedback: true,
+                      showDuration: const Duration(seconds: 3),
+                      child: Icon(Icons.help_outline, color: Colors.black),
+                    ),
+                  ),
+                ],
+              ),
               const SizedBox(height: 10),
               Expanded(
                 child: ReorderableListView.builder(
@@ -100,7 +129,9 @@ class AddCityScreen extends ConsumerWidget {
                       },
                       child: ListTile(
                         title: Text(favoriteCities[index],
-                            style: const TextStyle(color: Colors.white)),
+                            style: textTheme.bodyLarge!.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold)),
                         onTap: () {
                           // Navigate to WeatherPage with the selected city
                           Navigator.push(
@@ -130,7 +161,7 @@ class AddCityScreen extends ConsumerWidget {
                     ),
                   );
                 },
-                child: const Text('Go to Weather Page'),
+                child: Text('Go to Weather Page', style: textTheme.bodyMedium),
               ),
             ],
           ),

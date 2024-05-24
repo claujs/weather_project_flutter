@@ -42,43 +42,25 @@ class _CitySearchRowState extends ConsumerState<CitySearchBox> {
                 controller: _searchController,
                 textAlign: TextAlign.center,
                 style: const TextStyle(color: Colors.black),
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   fillColor: Colors.white,
                   filled: true,
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(_radius),
-                      bottomLeft: Radius.circular(_radius),
-                    ),
+                    borderSide: BorderSide.none,
+                  ),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      FocusScope.of(context).unfocus();
+                      ref.read(cityProvider.notifier).state =
+                          _searchController.text.toUpperCase();
+                    },
+                    icon: Icon(Icons.search),
                   ),
                 ),
                 onSubmitted: (value) {
                   ref.read(cityProvider.notifier).state = value;
                 },
               ),
-            ),
-            InkWell(
-              child: Container(
-                alignment: Alignment.center,
-                decoration: const BoxDecoration(
-                  color: AppColors.rainBlueDark,
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(_radius),
-                    bottomRight: Radius.circular(_radius),
-                  ),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15.0),
-                  child: Text(
-                    'search',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ),
-              ),
-              onTap: () {
-                FocusScope.of(context).unfocus();
-                ref.read(cityProvider.notifier).state = _searchController.text;
-              },
             ),
           ],
         ),

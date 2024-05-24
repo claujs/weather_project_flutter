@@ -16,7 +16,7 @@ class CurrentWeather extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(city, style: Theme.of(context).textTheme.headlineMedium),
+        Text(city, style: Theme.of(context).textTheme.headlineSmall),
         weatherDataValue.when(
           data: (weatherData) => CurrentWeatherContents(data: weatherData),
           loading: () => const Center(child: CircularProgressIndicator()),
@@ -38,6 +38,7 @@ class CurrentWeatherContents extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     final temp = data.temp.celsius.toInt().toString();
+
     final minTemp = data.minTemp.celsius.toInt().toString();
     final maxTemp = data.maxTemp.celsius.toInt().toString();
     final highAndLow = 'High: $maxTemp° Low: $minTemp°';

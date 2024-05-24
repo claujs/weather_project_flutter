@@ -41,7 +41,8 @@ class MyApp extends StatelessWidget {
   }
 
   ThemeData _buildTheme(BuildContext context) {
-    const textStyle = TextStyle(color: Colors.white);
+    const textStyle =
+        TextStyle(color: Colors.black, fontWeight: FontWeight.w500);
     final boxShadow = BoxShadow(
       color: Colors.black12.withOpacity(0.25),
       spreadRadius: 1,
