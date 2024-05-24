@@ -1,6 +1,6 @@
 {
-    "name": "open_weather_example_flutter",
-    "short_name": "open_weather_example_flutter",
+    "name": "rockweatherapp",
+    "short_name": "rockweatherapp",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

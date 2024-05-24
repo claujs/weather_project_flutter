@@ -1,4 +1,4 @@
-package com.codewithandrea.open_weather_example_flutter
+package com.rockweatherapp.rockweatherapp
 
 import io.flutter.embedding.android.FlutterActivity
 

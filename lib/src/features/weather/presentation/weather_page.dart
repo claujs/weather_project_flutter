@@ -9,6 +9,7 @@ import '../../../constants/app_colors.dart';
 
 class WeatherPage extends ConsumerStatefulWidget {
   const WeatherPage({super.key, required this.city});
+
   final String city;
 
   @override
@@ -16,8 +17,10 @@ class WeatherPage extends ConsumerStatefulWidget {
 }
 
 class _WeatherPageState extends ConsumerState<WeatherPage> {
-  final PageController _pageController = PageController();
+  final dayPeriod = DateTime.now().hour;
   List<String>? storedCities = [];
+
+  final PageController _pageController = PageController();
 
   @override
   void dispose() {
@@ -26,19 +29,26 @@ class _WeatherPageState extends ConsumerState<WeatherPage> {
   }
 
   @override
-  @override
   void initState() {
+    _loadFavoriteCities();
     super.initState();
-
     _pageController.addListener(() {
       final index = _pageController.page!.round();
-      const cities = ['Melbourne', 'Monte Carlo', 'Sao Paulo', 'Silverstone'];
-      final city = cities[index];
-      ref.read(cityProvider.notifier).state = city;
+      final cities = ref.watch(favoriteCitiesProvider);
+      index < cities.length
+          ? ref.read(cityProvider.notifier).state = cities[index]
+          : ref.read(cityProvider.notifier).state = cities.last;
     });
   }
 
-  final hour = DateTime.now().hour;
+  Future<void> _loadFavoriteCities() async {
+    final prefs = await SharedPreferences.getInstance();
+    final cities = prefs.getStringList('favoriteCities') ??
+        ['Melbourne', 'Monte Carlo', 'Sao Paulo', 'Silverstone'];
+    ref.read(favoriteCitiesProvider.notifier).state =
+        List<String>.unmodifiable(cities);
+    storedCities = ref.read(favoriteCitiesProvider.notifier).state;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,8 +59,9 @@ class _WeatherPageState extends ConsumerState<WeatherPage> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors:
-                hour <= 18 ? AppColors.rainGradient : AppColors.nightGradient,
+            colors: dayPeriod <= 18
+                ? AppColors.rainGradient
+                : AppColors.nightGradient,
           ),
         ),
         child: Padding(
@@ -63,8 +74,10 @@ class _WeatherPageState extends ConsumerState<WeatherPage> {
               Expanded(
                 child: PageView.builder(
                   controller: _pageController,
-                  itemCount: 4,
-                  itemBuilder: (context, index) => const CurrentWeather(),
+                  itemCount: ref
+                      .watch(favoriteCitiesProvider)
+                      .length, // Use the actual length of cities
+                  itemBuilder: (context, index) => CurrentWeather(),
                 ),
               ),
               const SizedBox(height: 50),
