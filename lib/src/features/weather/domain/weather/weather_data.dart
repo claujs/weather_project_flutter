@@ -23,17 +23,6 @@ class WeatherData {
     );
   }
 
-  factory WeatherData.fromJson(Map<String, dynamic> json) {
-    return WeatherData(
-      temp: Temperature.celsius(json['main']['temp']),
-      minTemp: Temperature.celsius(json['main']['temp_min']),
-      maxTemp: Temperature.celsius(json['main']['temp_max']),
-      description: json['weather'][0]['main'],
-      date: DateTime.fromMillisecondsSinceEpoch(json['dt'] * 1000),
-      icon: json['weather'][0]['icon'],
-    );
-  }
-
   final Temperature temp;
   final Temperature minTemp;
   final Temperature maxTemp;

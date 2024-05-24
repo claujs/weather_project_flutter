@@ -11,12 +11,5 @@ class ForecastData {
     );
   }
 
-  factory ForecastData.fromJson(Map<String, dynamic> json) {
-    final list = json['list'] as List<dynamic>;
-    return ForecastData(
-      list.map((e) => WeatherData.fromJson(e)).toList(),
-    );
-  }
-
   final List<WeatherData> list;
 }
