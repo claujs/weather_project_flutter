@@ -31,8 +31,7 @@ alt="Flutter Weather App Preview" width=50% height=50%>
 * **Flutter:**  The foundation of the app, a cross-platform framework for building beautiful and performant mobile applications.
 * **Riverpod:**  A powerful state management solution that simplifies data handling and makes code more maintainable.
 * **OpenWeatherMap API:** Provides accurate and up-to-date weather data for locations worldwide.
-* **SQLite:** A local database used to cache weather data for offline access. 
-* **SharedPreferences:**  Used to store user preferences, such as the list of favorite cities.
+* **SharedPreferences:**  Used to store user preferences, such as the list of favorite cities and save data receive on cache and show if offline.
 * **Other Packages:** `http`, `sqflite`, `shared_preferences`, `cached_network_image` and others, carefully chosen to enhance the app's functionality and performance.
 
 ## Getting Started
