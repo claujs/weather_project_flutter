@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weather_app_mobile/src/features/weather/application/providers.dart';
@@ -61,7 +60,7 @@ class _WeatherPageState extends ConsumerState<WeatherPage> {
   }
 
   Widget _buildBackground(BuildContext context) {
-    final imagePath = dayPeriod <= 18
+    final imagePath = dayPeriod >= 18
         ? 'assets/images/day_background.jpeg' // Replace with actual asset path
         : 'assets/images/night_background.jpeg'; // Replace with actual asset path
     return Container(
