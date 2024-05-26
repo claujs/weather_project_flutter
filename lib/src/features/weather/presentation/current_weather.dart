@@ -38,16 +38,15 @@ class CurrentWeatherContents extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     final temp = data.temp.celsius.toInt().toString();
-
     final minTemp = data.minTemp.celsius.toInt().toString();
     final maxTemp = data.maxTemp.celsius.toInt().toString();
-    final highAndLow = 'High: $maxTemp° Low: $minTemp°';
+    final highAndLow = 'High: $maxTemp°  Low: $minTemp°';
     final description = data.description;
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        WeatherIconImage(iconUrl: data.iconUrl, size: 120),
+        WeatherIconImage(iconUrl: data.iconUrl, size: 135),
         Text(
           temp,
           style: textTheme.displayMedium,

@@ -70,23 +70,23 @@ class _WeatherPageState extends ConsumerState<WeatherPage> {
           fit: BoxFit.cover,
         ),
       ),
-      child: _buildContent(context),
+      child: SafeArea(child: _buildContent(context)),
     );
   }
 
   Widget _buildContent(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width * 0.05,
-        vertical: MediaQuery.of(context).size.height * 0.1,
+        horizontal: size.width * 0.03,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           _buildBackButton(context),
-          const SizedBox(height: 20),
+          SizedBox(height: size.height * 0.03),
           const CitySearchBox(),
-          const SizedBox(height: 50),
+          SizedBox(height: size.height * 0.03),
           Expanded(
             child: PageView.builder(
               controller: _pageController,
@@ -106,8 +106,12 @@ class _WeatherPageState extends ConsumerState<WeatherPage> {
         IconButton(
           onPressed: () => Navigator.pop(context),
           icon: Platform.isAndroid
-              ? const Icon(Icons.arrow_back)
-              : const Icon(CupertinoIcons.back),
+              ? const Icon(
+                  Icons.arrow_back,
+                  color: Colors.black,
+                  size: 35,
+                )
+              : const Icon(CupertinoIcons.back, color: Colors.black, size: 35),
         ),
       ],
     );

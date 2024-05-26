@@ -50,7 +50,7 @@ class HourlyWeatherItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final textTheme = Theme.of(context).textTheme;
-    const fontWeight = FontWeight.normal;
+    const fontWeight = FontWeight.w600;
     final temp = data.temp.celsius.toInt().toString();
     return Expanded(
       child: Column(
