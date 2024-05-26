@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weather_app_mobile/src/features/weather/application/providers.dart';
@@ -75,6 +76,7 @@ class _WeatherPageState extends ConsumerState<WeatherPage> {
   }
 
   Widget _buildContent(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     final size = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -94,6 +96,7 @@ class _WeatherPageState extends ConsumerState<WeatherPage> {
               itemBuilder: (context, index) => CurrentWeather(),
             ),
           ),
+          Text('Swipe to see more', style: textTheme.bodyMedium),
         ],
       ),
     );
