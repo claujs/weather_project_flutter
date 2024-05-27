@@ -7,9 +7,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 final cityProvider = StateProvider<String>((ref) {
   final favoriteCities = ref.watch(favoriteCitiesProvider);
   if (favoriteCities.isNotEmpty) {
-    return favoriteCities.first; // Use the first city from the cache
+    return favoriteCities.first;
   } else {
-    return 'Melbourne'; // Default to 'Melbourne' if the cache is empty
+    return 'Melbourne';
   }
 });
 

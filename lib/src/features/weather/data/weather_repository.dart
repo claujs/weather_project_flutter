@@ -58,7 +58,6 @@ class HttpWeatherRepository {
   }
 }
 
-/// Providers used by rest of the app
 final weatherRepositoryProvider = Provider<HttpWeatherRepository>((ref) {
   const apiKey = String.fromEnvironment(
     'API_KEY',
