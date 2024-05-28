@@ -33,13 +33,15 @@ class _WeatherPageState extends ConsumerState<WeatherPage> {
   void initState() {
     _loadFavoriteCities();
     super.initState();
-    _pageController.addListener(() {
-      final index = _pageController.page!.round();
-      final cities = ref.watch(favoriteCitiesProvider);
-      index < cities.length
-          ? ref.read(cityProvider.notifier).state = cities[index]
-          : ref.read(cityProvider.notifier).state = cities.last;
-    });
+    _pageController.addListener(
+      () {
+        final index = _pageController.page!.round();
+        final cities = ref.watch(favoriteCitiesProvider);
+        index < cities.length
+            ? ref.read(cityProvider.notifier).state = cities[index]
+            : ref.read(cityProvider.notifier).state = cities.last;
+      },
+    );
   }
 
   Future<void> _loadFavoriteCities() async {
@@ -53,69 +55,60 @@ class _WeatherPageState extends ConsumerState<WeatherPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: _buildBackground(context),
-    );
-  }
-
-  Widget _buildBackground(BuildContext context) {
-    final imagePath = dayPeriod <= 18
-        ? 'assets/images/day_background.jpeg' // Replace with actual asset path
-        : 'assets/images/night_background.jpeg'; // Replace with actual asset path
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(imagePath),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: SafeArea(child: _buildContent(context)),
-    );
-  }
-
-  Widget _buildContent(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final size = MediaQuery.of(context).size;
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: size.width * 0.03,
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _buildBackButton(context),
-          SizedBox(height: size.height * 0.03),
-          const CitySearchBox(),
-          SizedBox(height: size.height * 0.03),
-          Expanded(
-            child: PageView.builder(
-              controller: _pageController,
-              itemCount: ref.watch(favoriteCitiesProvider).length,
-              itemBuilder: (context, index) => CurrentWeather(),
+    final imagePath = dayPeriod <= 18
+        ? 'assets/images/day_background.jpeg' // Replace with actual asset path
+        : 'assets/images/night_background.jpeg';
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(imagePath),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: size.width * 0.03,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: Platform.isAndroid
+                          ? const Icon(
+                              Icons.arrow_back,
+                              color: Colors.black,
+                              size: 35,
+                            )
+                          : const Icon(CupertinoIcons.back,
+                              color: Colors.black, size: 35),
+                    ),
+                  ],
+                ),
+                SizedBox(height: size.height * 0.03),
+                const CitySearchBox(),
+                SizedBox(height: size.height * 0.03),
+                Expanded(
+                  child: PageView.builder(
+                    controller: _pageController,
+                    itemCount: ref.watch(favoriteCitiesProvider).length,
+                    itemBuilder: (context, index) => CurrentWeather(),
+                  ),
+                ),
+                Text('Swipe to see more', style: textTheme.bodyMedium),
+              ],
             ),
           ),
-          Text('Swipe to see more', style: textTheme.bodyMedium),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildBackButton(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: Platform.isAndroid
-              ? const Icon(
-                  Icons.arrow_back,
-                  color: Colors.black,
-                  size: 35,
-                )
-              : const Icon(CupertinoIcons.back, color: Colors.black, size: 35),
         ),
-      ],
+      ),
     );
   }
 }
